@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="mt-2"><%= @cocktail.name %></h1>
+  <p>Ingredients</p>
+  <ul>
+  <% @cocktail.doses.each do |dose| %>
+  <li><%= "#{dose.description} of #{dose.ingredient.name}" %>
+      <%= link_to 'Delete ingredient', 
+                   dose_path(dose), 
+                   method: :delete,
+                   data: { confirm: "Are you sure?" } %>
+  </li>
+
+  <% end %>
+  </ul>
+  <p>Add an ingredient</p>
+  <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
+  <%= link_to 'Back to list', cocktails_path %>
+</div>
+
