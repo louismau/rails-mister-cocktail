@@ -1,5 +1,7 @@
-  <%= simple_form_for [ @cocktail, @dose ] do |f|%>
-    <%= f.association :ingredient %>
-    <%= f.input :description, label: 'Quantity' %>
-    <%= f.submit 'Add ingredient' %>
-  <% end %>
+  <div class="border p-3 bg-white rounded">
+    <%= simple_form_for [ @cocktail, @dose ] do |f|%>
+      <%= f.association :ingredient, input_html: { class: 'select2' } %>
+      <%= f.input :description, label: 'Quantity' %>
+      <%= f.submit 'Add ingredient' %>
+    <% end %>
+  </div>

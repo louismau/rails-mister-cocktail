@@ -1,19 +1,30 @@
-<div class="container">
-  <h1 class="mt-2"><%= @cocktail.name %></h1>
-  <p>Ingredients</p>
-  <ul>
-  <% @cocktail.doses.each do |dose| %>
-  <li><%= "#{dose.description} of #{dose.ingredient.name}" %>
-      <%= link_to 'Delete ingredient', 
-                   dose_path(dose), 
-                   method: :delete,
-                   data: { confirm: "Are you sure?" } %>
-  </li>
+<%= render 'shared/navbar' %>
+<div class="banner" id="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @cocktail.photo.key, crop: :fill %>);">
+  <div class="container">
+      <h1 class='text-center'><%= @cocktail.name %></h1>
+  </div>
+</div>
 
-  <% end %>
-  </ul>
-  <p>Add an ingredient</p>
-  <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
-  <%= link_to 'Back to list', cocktails_path %>
+
+<div class="container">
+  <div class="d-flex justify-content-between my-5">
+    <div>
+      <p>Ingredients</p>
+      <ul>
+      <% @cocktail.doses.each do |dose| %>
+      <li><%= "#{dose.description} of #{dose.ingredient.name}" %>
+          <%= link_to dose_path(dose), 
+                      method: :delete,
+                      data: { confirm: "Are you sure?" } do %>
+          <i class="fas fa-trash-alt"></i>
+          <% end %>
+      </li>
+    <% end %>
+    </ul>
+    </div>
+    <div>
+      <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
+    </div>
+  </div>
 </div>
 

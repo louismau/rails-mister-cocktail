@@ -1,18 +1,23 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1511715112108-9acc6c3ff61f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');">
-  <%= render 'shared/navbar' %>
+<%= render 'shared/navbar' %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path 'cocktail_background.jpg' %>);">
   <div class="container">
-    <h1>Best cocktails</h1>
-    <p>Create cocktails and share your recipes with your friends</p>
-    <a class="btn btn-flat" href="#">Add your cocktail</a>
+    <h1>Ma cocktailothèque</h1>
+    <p>Créé des coktails et partage tes recettes autour de toi</p>
+     <%= link_to new_cocktail_path do %>
+      <button type="button" class="btn btn-primary">
+        Ajoute un cocktail
+      </button>
+    <% end %>
   </div>
 </div>
 
 <div class="container">
-  <h1 class="mt-2">Cocktails</h1>
-  <ul>
-  <% @cocktails.each do |cocktail| %>
-  <li><%= link_to cocktail.name, cocktail_path(cocktail) %></li>
-  <% end %>
-  </ul>
-  <p><%= link_to 'Create cocktail', new_cocktail_path %></p>
+  <div class="cards my-3">
+    <% @cocktails.each do |cocktail| %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path cocktail.photo.key, height: 300, width: 400, crop: :fill %>)">
+        <%= link_to cocktail.name, cocktail_path(cocktail) %>
+      </div>
+    <% end %>
+  </div>
 </div>
+
