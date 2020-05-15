@@ -1,0 +1,15 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
+  <%= link_to cocktails_path do %>
+    <i class="fas fa-cocktail"></i>
+    Our Cocktails
+  <% end %>
+
+
+  <div class="collapse navbar-collapse text-light" id="navbarSupportedContent">
+    <%= link_to new_cocktail_path do %>
+      <button type="button" class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+      </button>
+    <% end %>
+  </div>
+</div>
